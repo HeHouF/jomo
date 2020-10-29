@@ -49,6 +49,11 @@
 
 <script>
 export default {
+	computed: {
+			defaultActive: function(){
+				return this.$route.path.replace('/', '');
+			}
+		},
 
 }
 </script>

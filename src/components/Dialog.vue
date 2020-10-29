@@ -25,7 +25,7 @@
 
 
 </el-card>
-
+<!-- 
       <el-form 
       ref="form"
       :model="formData"
@@ -36,7 +36,7 @@
       
       >
 
-      </el-form>
+      </el-form> -->
 
       </div>
         <el-button @click="dialog.show = false">取消</el-button>

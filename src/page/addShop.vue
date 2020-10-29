@@ -22,7 +22,7 @@
 						  style="width: 100%;"
 						  @select="addressSelect"
 						></el-autocomplete>
-						<span>当前城市：{{name}}</span>
+						<span>当前城市：{{city.name}}</span>
 					</el-form-item>
 
              <el-form-item label="店铺分类：" prop=""> 
@@ -44,17 +44,17 @@
                <el-switch  on-text="" off-text="" v-model="formData.fnzs"></el-switch>
              </el-form-item>
             <el-form-item label="配送费：">
-             <el-input-number  v-model="formData.num" @change="handleccc" :min="0" :max="10" ></el-input-number>
+             <el-input-number  v-model="formData.num"  :min="0" :max="10" ></el-input-number>
             </el-form-item>
 
           <el-form-item label="起送价：">
-             <el-input-number  v-model="formData.sob" @change="handleccc" :min="0" :max="30" ></el-input-number>
+             <el-input-number  v-model="formData.sob"  :min="0" :max="30" ></el-input-number>
             </el-form-item>
 
             <el-form-item label="营业时间：">
-              <el-time-select  placeholder="营业时间" v-model=" formData.soTime" :picker-options="{start: '05:30', step:'00:15',end:'23:30'}">
+              <el-time-select  placeholder="营业时间" v-model=" formData.startTime" :picker-options="{start: '05:30', step:'00:15',end:'23:30'}">
               </el-time-select>
-              <el-time-select  placeholder="结束时间" v-model=" formData.endTime" :picker-options="{start: '05:30', step:'00:15',end:'23:30',minTime: soTime}">
+              <el-time-select  placeholder="结束时间" v-model=" formData.endTime" :picker-options="{start: '05:30', step:'00:15',end:'23:30',minTime: formData.startTime}">
               </el-time-select>
             </el-form-item>
 
@@ -80,7 +80,7 @@
             <el-form 
       ref="form" 
       :model="formData"
-      :rules="form_rules"
+      
       label-width="120px"
       style="marign:10px;width:auto;"
       
@@ -96,6 +96,7 @@ export default {
   data(){
     return{
       input: '',
+      city: {},
       formData:{
          name:'',
          type:'',
@@ -109,7 +110,7 @@ export default {
          num:1,
          sob:15,
 
-         soTime:'',
+         startTime:'',
          endTime:'',
          
          },
@@ -330,9 +331,32 @@ export default {
             label: '组件交互文档'
           }]
         }],
-    }
+
+        addressSelect(address){
+		    	this.formData.latitude = address.latitude;
+		    	this.formData.longitude = address.longitude;
+		    	console.log(this.formData.latitude, this.formData.longitude)
+        },
+        async querySearchAsync(queryString, cb) {
+    			if (queryString) {
+	    			try{
+	    				const cityList = await searchplace(this.city.id, queryString);
+	    				if (cityList instanceof Array) {
+		    				cityList.map(item => {
+		    					item.value = item.address;
+		    					return item;
+		    				})
+		    				cb(cityList)
+	    				}
+	    			}catch(err){
+	    				console.log(err)
+	    			}
+    			}
+		    },
+   }
 
   }
+  
 
 }
 </script>

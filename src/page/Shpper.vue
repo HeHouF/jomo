@@ -104,7 +104,7 @@ export default {
 
      },
      created(){
-       this.getPorflie();
+      //  this.getPorflie();
      },
      methods:{
         open() {
@@ -125,12 +125,12 @@ export default {
           });
         });
       },
-       getPorflie(){
-       this.$axios.get(" ").then(res =>{
-         console.log()
-       })
-       .catch(err => console.log(err)) ;
-     },
+    //    getPorflie(){
+    //    this.$axios.get(" ").then(res =>{
+    //      console.log()
+    //    })
+    //    .catch(err => console.log(err)) ;
+    //  },
      handleAdd(){
         this.dialog.show = true;
       // console.log(1231);
@@ -143,7 +143,7 @@ export default {
      }
      },
       components:{
-      Dialog
+      Dialog 
       }
 };
 </script>
