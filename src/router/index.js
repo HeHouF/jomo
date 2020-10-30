@@ -7,6 +7,7 @@ import Food from '@/page/Food'
 import Order from '@/page/Order'
 import addShop from '@/page/addShop'
 import vueEdit from '@/page/vueEdit'
+import Explain from '@/page/Explain'
 
 
 Vue.use(Router)
@@ -27,6 +28,7 @@ export default new Router({
                 { path: '/order', name: 'order', component: Order },
                 { path: '/addshop', name: 'addshop', component: addShop },
                 { path: '/vueedit', name: 'vueedit', component: vueEdit },
+                { path: '/explain', name: 'explain', component: Explain },
 
             ]
         }

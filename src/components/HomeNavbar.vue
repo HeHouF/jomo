@@ -34,7 +34,7 @@
 					</el-submenu>
 					<el-submenu index="7">
 						<template slot="title"><i class="el-icon-warning"></i>说明</template>
-						<el-menu-item index="explain">说明</el-menu-item>
+						<el-menu-item index="Explain">说明</el-menu-item>
 					</el-submenu>
 				</el-menu>
 			</el-col>
